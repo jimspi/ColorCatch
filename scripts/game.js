@@ -4,6 +4,7 @@ canvas.width = 320;
 canvas.height = 480;
 
 let paddleColor = 'red';
+let paddleX = canvas.width / 2 - 30;
 let score = 0;
 let fallingBlocks = [];
 let gameInterval;
@@ -31,7 +32,7 @@ function gameLoop() {
 
 function drawPaddle() {
   ctx.fillStyle = paddleColor;
-  ctx.fillRect(canvas.width/2 - 30, canvas.height - 30, 60, 10);
+  ctx.fillRect(paddleX, canvas.height - 30, 60, 10);
 }
 
 function updateBlocks() {
@@ -45,7 +46,7 @@ function updateBlocks() {
   fallingBlocks.forEach(block => {
     block.y += 5;
     if (block.y > canvas.height - 40 && block.y < canvas.height - 30 &&
-        block.x > canvas.width/2 - 30 && block.x < canvas.width/2 + 30) {
+        block.x > paddleX && block.x < paddleX + 60) {
       if (block.color === paddleColor) {
         score++;
       } else {
@@ -70,3 +71,15 @@ function toggleInstructions() {
   const el = document.getElementById('instructions');
   el.classList.toggle('hidden');
 }
+
+// Paddle movement: mouse and touch
+canvas.addEventListener('mousemove', (e) => {
+  const rect = canvas.getBoundingClientRect();
+  paddleX = e.clientX - rect.left - 30;
+});
+
+canvas.addEventListener('touchmove', (e) => {
+  const rect = canvas.getBoundingClientRect();
+  paddleX = e.touches[0].clientX - rect.left - 30;
+});
+
