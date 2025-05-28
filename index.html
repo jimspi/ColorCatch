@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Color Catch</title>
+  <link rel="stylesheet" href="styles/style.css" />
+  <link rel="icon" href="assets/logo.png" type="image/png">
+</head>
+<body>
+  <div class="game-container">
+    <header>
+      <h1>Color Catch</h1>
+      <button onclick="startGame()">New Game</button>
+      <button onclick="toggleInstructions()">Instructions</button>
+      <div id="instructions" class="hidden">
+        <p>Catch only the blocks that match your paddle's color. Wrong block? Lose a point.</p>
+      </div>
+    </header>
+    <canvas id="gameCanvas"></canvas>
+    <div id="score">Score: 0</div>
+  </div>
+  <script src="scripts/game.js"></script>
+</body>
+</html>
